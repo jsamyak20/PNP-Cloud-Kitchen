@@ -839,7 +839,15 @@
     <!-- ================= JAVASCRIPT ================= -->
     <script>
         // Init Storage
-        let appData = JSON.parse(localStorage.getItem('pnp_data')) || { customers: [], records: {} };
+        let appData = JSON.parse(localStorage.getItem('pnp_data'));
+        if (Array.isArray(appData)) {
+            appData = { customers: appData, records: {} };
+        } else if (!appData) {
+            appData = { customers: [], records: {} };
+        }
+        if (!appData.customers) appData.customers = [];
+        if (!appData.records) appData.records = {};
+
         function save() { localStorage.setItem('pnp_data', JSON.stringify(appData)); }
         function genId() { return Date.now().toString(36) + Math.random().toString(36).substr(2); }
 
