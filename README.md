@@ -1,113 +1,62 @@
-# 🍱 PNP Cloud Kitchen Website
+# PNP Cloud Kitchen 🍱
+Professional Homestyle Tiffin Management & Booking Platform.
 
-> **Homemade With Love ❤️**
-> A modern, responsive website for **PNP Cloud Kitchen** — a pure veg homestyle tiffin service run by a mother and son.
-
----
-
-## 🌿 About the Project
-
-This project is a fully functional frontend web application designed for a cloud kitchen business.
-
-It provides:
-
-* A beautiful landing page for customers
-* Direct WhatsApp ordering system
-* Customer feedback collection
-* A powerful owner dashboard for managing customers and billing
+PNP Cloud Kitchen is a high-end, full-stack web application designed for a mother-son duo to manage their homestyle cloud kitchen. It features a stunning, mobile-responsive customer website and a secure, data-driven Owner Management Panel.
 
 ---
 
-## ✨ Key Features
+## 🌟 Key Features
 
-* 📱 **Responsive Design** — Works on mobile, tablet, and desktop
-* 💬 **WhatsApp Integration** — Direct order & communication
-* ⭐ **Customer Feedback System**
-* 🔐 **Secure Owner Panel (Login-based)**
-* 📊 **Customer Management Dashboard**
-* 🧾 **Tiffin Tracking & Billing System**
-* 💾 **Local Storage Data Handling (No backend required)**
+### 1. Premium Customer Website
+- **8K Food Photography**: Custom-generated, high-resolution visuals for all meal plans.
+- **Interactive Tiffin Plans**: Professional layout for One-Time, Two-Time, and Regular tiffin services.
+- **Chef's Special Banner**: A dedicated, interactive section for separate Roti/Chapati orders with direct WhatsApp integration.
+- **Modern UI**: Smooth animations, glassmorphism effects, and a warm, trust-building aesthetic.
 
----
+### 2. Owner Management Panel (PIN Protected)
+- **Customer CRM**: Add, Edit, and Manage customers with real-time balance tracking.
+- **Tiffin Tracker**: Separate Morning (M) and Night (N) tracking for precise daily management.
+- **Automated WhatsApp Billing**: Generates formatted, professional billing reports sent directly to customers via WhatsApp.
+- **Advance Payment System**: Color-coded badges to instantly distinguish between "Due" payments and "Advance" credits.
 
-## 🖥️ Tech Stack
-
-* **HTML5**
-* **CSS3**
-* **JavaScript (Vanilla JS)**
-
----
-
-## 🔐 Owner Panel Access
-
-```
-Credentials are intentionally not shared for security reasons.
-```
+### 3. Smart Feedback System
+- **Interactive Star Ratings**: Beautiful feedback modal with dynamic mood indicators.
+- **WhatsApp Reports**: Professionalized feedback reports (Name, Rating, Experience, Message) sent directly to the owner.
 
 ---
 
-## 📍 Business Location
-
-Vardhaman Residency, Khinvasara Park,
-Ulkanagari, Chhatrapati Sambhajinagar, Maharashtra, India
-
----
-
-## 📞 Contact Information
-
-* 📱 Phone: 9325733447 / 8999007643
-* 📸 Instagram:
-
-  * https://instagram.com/pnp_kitchenn
-  * https://instagram.com/poojathole15
-  * https://instagram.com/samyakthole20
+## 🛠️ Technology Stack
+- **Backend**: Node.js & Express.js
+- **Database**: SQLite3 (for reliable, persistent data storage)
+- **Frontend**: Vanilla HTML5, CSS3 (Modern UI patterns), and JavaScript.
+- **Integration**: WhatsApp API for automated messaging.
 
 ---
 
-## 🛠️ How to Run Locally
+## 🚀 How to Run
 
+### 1. Prerequisites
+Ensure you have **Node.js** installed on your system.
+
+### 2. Install Dependencies
+Open your terminal in the project folder and run:
 ```bash
-# Clone the repository
-git clone https://github.com/jsamyak20/PNP-Cloud-Kitchen.git
-
-# Open the project folder
-cd PNP-Cloud-Kitchen
-
-# Run the project
-Open index.html in your browser
+npm install
 ```
 
----
-
-## 📂 Project Structure
-
-```
-PNP-Cloud-Kitchen/
-│── index.html
-│── hero_tiffin.png
-│── README.md
+### 3. Launch the Server
+Start the backend server with the following command:
+```bash
+node server.js
 ```
 
----
+### 4. Access the Site
+Open your browser and visit:
+**[http://localhost:3000](http://localhost:3000)**
 
-## 🚧 Future Improvements
 
-* 🔄 Cloud database integration (Firebase / Backend)
-* 💳 Online payment system (UPI integration)
-* 📱 Progressive Web App (PWA support)
-* 🌐 SEO optimization for search engines
 
 ---
 
-## 🤝 Contribution
-
-This is a personal/business project. Contributions are currently not open.
-
----
-
-## ❤️ Made With Love
-
-**PNP Cloud Kitchen**
-Homemade food that feels like home.
-
----
+## ❤️ Credits
+Proudly built by **Samyak Thole** for **PNP Cloud Kitchen**. Food that feels like home, because it is.

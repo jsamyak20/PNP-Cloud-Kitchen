@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PNP Cloud Kitchen — Homemade With Love</title>
-    <!-- Google Fonts: Poppins -->
+    <!-- Standard Header -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
@@ -191,13 +191,16 @@
         .plan-card {
             background: var(--white);
             border-radius: 20px;
-            padding: 2.5rem 2rem;
+            padding: 0;
             text-align: center;
             box-shadow: var(--shadow);
             transition: transform 0.3s;
             position: relative;
             overflow: hidden;
         }
+        .plan-img-container { width: 100%; height: 200px; overflow: hidden; border-bottom: 1px solid var(--border); }
+        .plan-img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .plan-card:hover .plan-img-container img { transform: scale(1.1); }
         .plan-card:hover { transform: translateY(-10px); }
         .plan-card.popular { border: 2px solid var(--primary); transform: scale(1.05); }
         .plan-card.popular:hover { transform: scale(1.05) translateY(-10px); }
@@ -215,61 +218,179 @@
         .plan-price { font-size: 2.2rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; }
         .plan-desc { color: var(--text-muted); margin-bottom: 2rem; }
         .roti-banner {
-            max-width: 800px;
-            margin: 3rem auto 0;
-            background: var(--primary-light);
-            padding: 1.5rem;
-            border-radius: 12px;
-            text-align: center;
-            font-weight: 600;
-            color: var(--primary);
-            border: 1px dashed var(--primary);
-        }
-
-        /* HOW IT WORKS */
-        .steps-container {
+            max-width: 900px;
+            margin: 5rem auto 0;
+            background: linear-gradient(135deg, #f8fff9 0%, #e8ffed 100%);
+            padding: 1rem 1.5rem 1rem 1rem;
+            border-radius: 100px;
+            text-align: left;
+            font-weight: 500;
+            color: var(--text-dark);
+            border: 1px solid rgba(46, 125, 50, 0.15);
+            box-shadow: 
+                0 4px 6px rgba(46, 125, 50, 0.02),
+                0 10px 25px rgba(46, 125, 50, 0.05);
             display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-        .step {
-            text-align: center;
-            flex: 1;
-            min-width: 250px;
-            max-width: 300px;
-        }
-        .step-icon {
-            width: 80px; height: 80px;
-            background: var(--white);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
             align-items: center;
-            font-size: 2.5rem;
-            margin: 0 auto 1.5rem;
-            box-shadow: var(--shadow);
-            color: var(--primary);
+            gap: 20px;
+            transition: all 0.4s ease;
+            cursor: pointer;
         }
-        .step h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .roti-banner:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 
+                0 10px 20px rgba(46, 125, 50, 0.05),
+                0 25px 50px rgba(46, 125, 50, 0.1);
+            background: white;
+            border-color: var(--primary);
+        }
+        .roti-icon { 
+            width: 60px; height: 60px; 
+            flex-shrink: 0;
+            background: white; 
+            border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08); 
+            padding: 2px;
+            border: 2px solid var(--primary-light);
+        }
+        .roti-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .roti-text { flex: 1; font-size: 1.05rem; line-height: 1.4; color: var(--text-muted); }
+        .roti-text b { color: var(--primary); font-weight: 700; }
+        .roti-cta {
+            background: var(--primary);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+        .roti-banner:hover .roti-cta { background: var(--text-dark); transform: scale(1.05); }
+
+        /* HOW IT WORKS - SEQUENTIAL UPGRADE */
+        .how-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 2rem; 
+            margin-top: 4rem; 
+            position: relative;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .step-card { 
+            text-align: center; 
+            padding: 2rem 1.5rem; 
+            position: relative; 
+            z-index: 2;
+        }
+        .step-icon-img { 
+            width: 170px; height: 170px; margin: 0 auto 2rem; 
+            border-radius: 50%; overflow: hidden; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+            border: 8px solid var(--white);
+            outline: 2px solid var(--primary-light);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        .step-number {
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            background: var(--primary);
+            color: white;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
+            border: 3px solid var(--white);
+            z-index: 5;
+        }
+        .step-icon-img img { width: 100%; height: 100%; object-fit: cover; }
+        .step-card:hover .step-icon-img { 
+            transform: scale(1.05); 
+            outline-color: var(--primary);
+            box-shadow: 0 20px 45px rgba(46, 125, 50, 0.15); 
+        }
+        .step-card h3 { color: var(--text-dark); font-size: 1.5rem; margin-bottom: 0.8rem; font-weight: 700; }
+        .step-card p { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; }
+
+        /* Connecting lines on desktop */
+        @media (min-width: 1024px) {
+            .how-grid::after {
+                content: '';
+                position: absolute;
+                top: 85px; left: 20%; right: 20%;
+                height: 2px;
+                background-image: linear-gradient(to right, var(--primary-light) 0%, var(--primary-light) 50%, transparent 50%);
+                background-size: 20px 1px;
+                background-repeat: repeat-x;
+                z-index: 1;
+            }
+        }
 
         /* WHY CHOOSE US */
+        /* WHY CHOOSE US - LUXURY UPGRADE */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         .feature-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 3rem 2rem;
+            border-radius: 24px;
             text-align: center;
-            box-shadow: var(--shadow);
-            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(46, 125, 50, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .feature-card:hover { transform: translateY(-5px); }
-        .feature-icon { font-size: 3rem; margin-bottom: 1rem; }
-        .feature-card h3 { color: var(--primary); }
+        .feature-icon-wrapper {
+            width: 80px; height: 80px;
+            background: var(--primary-light);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(46, 125, 50, 0.1);
+        }
+        .feature-card:hover { 
+            transform: translateY(-12px);
+            background: white;
+            box-shadow: 0 20px 40px rgba(46, 125, 50, 0.1);
+            border-color: var(--primary);
+        }
+        .feature-card:hover .feature-icon-wrapper {
+            transform: scale(1.1) rotate(5deg);
+            background: var(--primary);
+            color: white;
+        }
+        .feature-card h3 { 
+            color: var(--text-dark); 
+            font-size: 1.5rem; 
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
 
         /* REVIEWS */
         .reviews-grid {
@@ -298,21 +419,19 @@
         .review-text { font-style: italic; margin-bottom: 1rem; position: relative; z-index: 1; }
         .reviewer { font-weight: 600; color: var(--primary); text-align: right; }
 
-        /* CONTACT & FOOTER */
-        .contact-area {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 3rem;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            box-shadow: var(--shadow);
-        }
-        .contact-info { margin-top: 2rem; }
-        .contact-row { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; }
-        .contact-row a { color: var(--text-dark); text-decoration: none; font-weight: 500; transition: color 0.2s; }
-        .contact-row a:hover { color: var(--primary); }
-        .contact-icon { width: 40px; height: 40px; background: var(--primary-light); color: var(--primary); border-radius: 50%; display: flex; justify-content: center; align-items: center; }
+        /* REDESIGNED CONTACT V2 */
+        .contact-card-v2 { background: var(--white); border-radius: 20px; padding: 3rem; max-width: 900px; margin: 0 auto; box-shadow: var(--shadow); }
+        .contact-story { text-align: center; margin-bottom: 2.5rem; border-bottom: 1px dashed var(--border); padding-bottom: 2rem; }
+        .contact-story h3 { color: var(--primary); font-size: 1.8rem; margin-bottom: 0.8rem; }
+        .contact-story p { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0.5rem auto; }
+        .contact-grid-modern { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; margin-bottom: 2.5rem; }
+        .contact-item { display: flex; gap: 1rem; align-items: flex-start; text-align: left; }
+        .item-icon { width: 45px; height: 45px; background: var(--primary-light); color: var(--primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+        .item-text strong { color: var(--primary); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        .item-text { font-size: 1rem; color: var(--text-dark); line-height: 1.5; }
+        .item-text a { color: var(--text-dark); text-decoration: none; transition: color 0.2s; }
+        .item-text a:hover { color: var(--primary); }
+        .contact-footer { text-align: center; border-top: 1px dashed var(--border); padding-top: 2rem; }
 
         footer {
             background: var(--primary);
@@ -327,8 +446,152 @@
         .footer-links a:hover { border-bottom: 1px dotted white; }
         .copyright { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.9rem; opacity: 0.8; }
 
+        /* OWNER PANEL STYLES */
+        .owner-bg {
+            min-height: 100vh;
+            background: #fdfdfd;
+            padding: 2rem 5%;
+        }
+        .panel-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
 
-        /* RESPONSIVE VIEWS */
+        /* BILLING DASHBOARD */
+        .bill-summary-dashboard { background: #fcfdfc; border-radius: 20px; padding: 2rem; border: 1px solid var(--border); margin-top: 1rem; }
+        .summary-stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
+        .stat-pill { background: white; padding: 1rem; border-radius: 15px; border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,0.04); text-align: center; }
+        .stat-pill-label { display: block; font-size: 0.75rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.5rem; }
+        .stat-pill-val { font-size: 1.5rem; font-weight: 800; color: var(--text-dark); }
+        .billing-controls { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; align-items: flex-end; }
+        .bill-stat-large label { display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.5rem; }
+        .bill-stat-large div { font-size: 2.2rem; font-weight: 800; color: var(--primary); line-height: 1; }
+        .form-group-compact label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.5rem; }
+        .form-control-pill { width: 100%; padding: 0.8rem 1.2rem; border-radius: 50px; border: 2px solid #eee; font-size: 1rem; font-weight: 600; transition: 0.3s; }
+        .form-control-pill:focus { border-color: var(--primary); outline: none; background: #f0fff4; }
+        .detail-actions { display: flex; gap: 1rem; margin-top: 2rem; justify-content: flex-end; }
+        .card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .stat-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .stat-label { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .stat-val { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th { text-align: left; padding: 1rem; border-bottom: 2px solid var(--border); color: var(--primary); }
+        td { padding: 1rem; border-bottom: 1px solid var(--border); }
+        tr:hover { background: var(--primary-light); }
+
+        /* TABBED DASHBOARD */
+        .dash-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 0px; overflow-x: auto; }
+        .tab-btn { padding: 1rem 1.5rem; border: none; background: none; font-weight: 600; color: var(--text-muted); cursor: pointer; border-bottom: 3px solid transparent; transition: 0.3s; white-space: nowrap; }
+        .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* SEARCH */
+        .search-box { position: relative; margin-bottom: 1.5rem; }
+        .search-box input { width: 100%; padding: 0.8rem 1rem 0.8rem 2.8rem; border: 1px solid var(--border); border-radius: 12px; outline: none; }
+        .search-box::before { content: "🔍"; position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); opacity: 0.5; }
+
+        /* CALENDAR */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .date-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.8rem;
+            text-align: center;
+        }
+        .date-card:hover { border-color: var(--primary); }
+        .date-header { font-weight: 600; margin-bottom: 0.5rem; border-bottom: 1px solid #eee; padding-bottom: 0.3rem; }
+        .date-inputs { display: flex; gap: 0.5rem; justify-content: center; }
+        .date-inputs input { width: 45px; padding: 0.3rem; border: 1px solid #ddd; border-radius: 4px; text-align: center; }
+        .date-inputs label { font-size: 0.7rem; display: block; color: var(--text-muted); }
+
+        /* MODALS (Global) */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            backdrop-filter: blur(4px);
+        }
+        .modal {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            width: 95%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: var(--shadow);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-close { 
+            position: sticky; 
+            top: 0; 
+            float: right; 
+            background: #f0f0f0; 
+            border: none; 
+            font-size: 1.5rem; 
+            cursor: pointer; 
+            color: var(--text-dark); 
+            width: 35px; 
+            height: 35px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            z-index: 10;
+            margin-bottom: -35px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
+        .form-control { width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; }
+
+        .pin-input {
+            width: 100%;
+            padding: 1rem;
+            text-align: center;
+            font-size: 2rem;
+            letter-spacing: 0.5rem;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
         @media (max-width: 900px) {
             .hero { flex-direction: column; text-align: center; padding-top: 4rem; }
             .hero .soul-line { border-left: none; padding-left: 0; }
@@ -339,56 +602,14 @@
             .plan-card.popular:hover { transform: translateY(-10px); }
         }
 
-
-        /* ================= OWNER PANEL STYLES ================= */
-        .owner-bg { background: #f4f6f8; min-height: 100vh; font-family: 'Poppins', sans-serif; display: flex; flex-direction: column; overflow-x: hidden; }
-        .panel-container { max-width: 1200px; margin: 0 auto; padding: 2rem; width: 100%; flex: 1; }
-        .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
-        
-        .pin-box { background: white; padding: 3rem; border-radius: 15px; box-shadow: var(--shadow); text-align: center; max-width: 400px; width: 100%; margin: auto; }
-        .pin-input { width: 100%; padding: 1rem; font-size: 1.5rem; text-align: center; letter-spacing: 0.5rem; border: 2px solid var(--border); border-radius: 8px; margin: 1.5rem 0; outline: none; }
-        .pin-input:focus { border-color: var(--primary); }
-        
-        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-        .stat-card { background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; }
-        .stat-val { font-size: 2rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; }
-        .stat-label { color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
-
-        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 1.5rem; }
-        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
-        
-        table { width: 100%; border-collapse: collapse; }
-        th, td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); }
-        th { font-weight: 600; color: var(--text-muted); background: #fafafa; }
-        tbody tr:hover { background: #f9fafb; cursor: default; }
-
-        /* Detail Calendar */
-        .month-picker { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
-        .month-picker input[type="month"] { padding: 0.8rem; border-radius: 8px; border: 1px solid var(--border); font-size: 1rem; outline: none; font-family: 'Poppins', sans-serif;}
-        
-        .calendar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1rem; }
-        .date-card { border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: #fff; }
-        .date-header { font-weight: 600; color: var(--primary); margin-bottom: 0.8rem; font-size: 0.9rem; border-bottom: 1px dashed var(--border); padding-bottom: 0.4rem; }
-        .date-inputs { display: flex; justify-content: space-between; gap: 0.5rem; }
-        .date-inputs div { text-align: center; width: 100%; }
-        .date-inputs label { font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 0.3rem; }
-        .date-inputs input { width: 100%; padding: 0.4rem; border: 1px solid var(--border); border-radius: 4px; text-align: center; font-family: 'Poppins', sans-serif;}
-
-        .bill-summary { background: var(--primary-light); padding: 1.5rem; border-radius: 12px; display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
-        .bill-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1.5rem; align-items: end; }
-        .bill-item { display: flex; flex-direction: column; gap: 0.5rem; }
-        .bill-item label { color: var(--text-dark); font-weight: 500; font-size: 0.9rem; }
-        .bill-item .val { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
-        .bill-item input { padding: 0.6rem; border-radius: 6px; border: 1px solid var(--primary); font-size: 1.1rem; font-weight: 600; font-family: 'Poppins', sans-serif;}
-
-        /* Modal */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; justify-content: center; align-items: center; z-index: 9999; }
-        .modal { background: white; padding: 2.5rem; border-radius: 15px; width: 100%; max-width: 500px; box-shadow: var(--shadow); position: relative; }
-        .form-group { margin-bottom: 1.2rem; }
-        .form-group label { display: block; font-weight: 500; margin-bottom: 0.5rem; }
-        .form-control { width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: 8px; outline: none; font-family: 'Poppins', sans-serif;}
-        .form-control:focus { border-color: var(--primary); }
-        .modal-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); }
+        @media (max-width: 600px) {
+            .dashboard-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+            .stat-card { padding: 1rem; }
+            .stat-val { font-size: 1.5rem; }
+            .card { padding: 1rem; }
+            table { font-size: 0.8rem; }
+            .calendar-grid { grid-template-columns: 1fr 1fr 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -396,8 +617,6 @@
     <!-- ================= PUBLIC WEBSITE ================= -->
     <div id="public-website">
         
-
-        <!-- Navbar -->
         <nav>
             <a href="#" class="logo">
                 <span style="font-size: 1.5rem;">🏠❤️</span> PNP Cloud Kitchen
@@ -411,14 +630,12 @@
             <button class="owner-btn" onclick="openOwnerPanel()">Owner Panel</button>
         </nav>
 
-        <!-- Hero -->
         <section id="home" class="hero">
             <div class="hero-content">
                 <div class="hero-badge">A Mother & Son Initiative</div>
                 <h1>100% Pure Veg <br>Homestyle Tiffin 🌿</h1>
                 <h2>Made with a mother's love, served with care ❤️</h2>
                 <div class="soul-line">PNP Cloud Kitchen — a homestyle cloud kitchen lovingly run by a mother and her son ❤️</div>
-                <p>Homemade With Love</p>
                 <div class="hero-buttons">
                     <a href="tel:9325733447" class="btn btn-primary">📞 Call Us</a>
                     <a href="https://wa.me/919325733447" class="btn btn-outline" target="_blank">💬 WhatsApp Order</a>
@@ -429,93 +646,78 @@
             </div>
         </section>
 
-        <!-- Plans -->
+        <!-- Plans (Dynamically Rendered) -->
         <section id="plans" class="section">
             <div class="section-header">
                 <h2 class="section-title">Our Plans</h2>
                 <p style="color: var(--text-muted);">Choose the plan that suits your daily needs</p>
             </div>
-            <div class="plans-grid">
-                <div class="plan-card">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🍱</div>
-                    <div class="plan-name">One-Time Tiffin</div>
-                    <div class="plan-desc">For lunch OR dinner</div>
-                    <div class="plan-price">₹2700<span style="font-size:1rem;font-weight:400;color:var(--text-muted)">/month</span></div>
-                    <a href="https://wa.me/919325733447?text=Hi, I am interested in the One-Time Tiffin plan (2700/month)" target="_blank" class="btn btn-outline" style="width: 100%;">Select Plan</a>
-                </div>
-                
-                <div class="plan-card popular">
-                    <div class="popular-tag">Most Popular</div>
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🍱🍱</div>
-                    <div class="plan-name">Two-Time Tiffin</div>
-                    <div class="plan-desc">For both lunch AND dinner</div>
-                    <div class="plan-price">₹5400<span style="font-size:1rem;font-weight:400;color:var(--text-muted)">/month</span></div>
-                    <a href="https://wa.me/919325733447?text=Hi, I am interested in the Two-Time Tiffin plan (5400/month)" target="_blank" class="btn btn-primary" style="width: 100%;">Select Plan</a>
-                </div>
-
-                <div class="plan-card">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🥗</div>
-                    <div class="plan-name">Regular Tiffin</div>
-                    <div class="plan-desc">Pay as you go base rate</div>
-                    <div class="plan-price">₹100<span style="font-size:1rem;font-weight:400;color:var(--text-muted)">/meal</span></div>
-                    <a href="https://wa.me/919325733447?text=Hi, I am interested in ordering a Regular Tiffin" target="_blank" class="btn btn-outline" style="width: 100%;">Order Now</a>
-                </div>
+            <div class="plans-grid" id="public-plans-grid">
+                <!-- Rendered by JS -->
             </div>
-            <div class="roti-banner">
-                🫓 Roti/Chapati also available separately — contact us for details!
+            <div class="roti-banner" onclick="window.open('https://wa.me/919325733447?text=Interested in Roti/Chapati order', '_blank')">
+                <div class="roti-icon"><img src="roti_icon.png" alt="Roti"></div>
+                <div class="roti-text">
+                    <b>Chef's Special:</b> Hot & Freshly made <b>Roti/Chapati</b> are also available separately — perfectly paired with your favorite dishes.
+                </div>
+                <div class="roti-cta">Order Separately</div>
             </div>
         </section>
 
-        <!-- How It Works -->
         <section id="how" class="section" style="background: white;">
             <div class="section-header">
                 <h2 class="section-title">How It Works</h2>
             </div>
-            <div class="steps-container">
-                <div class="step">
-                    <div class="step-icon">📱</div>
+            <div class="how-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-icon-img"><img src="empty_tiffin_icon_1775817746247.png" alt="Bring Your Tiffin"></div>
                     <h3>Bring Your Tiffin</h3>
-                    <p style="color:var(--text-muted);font-size:0.9rem;">Drop off your empty tiffin box to us.</p>
+                    <p>Drop off your empty tiffin box to us.</p>
                 </div>
-                <div class="step">
-                    <div class="step-icon">🍳</div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-icon-img"><img src="fresh_veg_cooking_icon_1775817779917.png" alt="We Fill It Fresh"></div>
                     <h3>We Fill It Fresh</h3>
-                    <p style="color:var(--text-muted);font-size:0.9rem;">We cook a nutritious meal and fill it up.</p>
+                    <p>We cook a nutritious meal and fill it up.</p>
                 </div>
-                <div class="step">
-                    <div class="step-icon">🏠</div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-icon-img"><img src="enjoy_meal_icon_1775817807265.png" alt="Take Home & Enjoy"></div>
                     <h3>Take Home & Enjoy</h3>
-                    <p style="color:var(--text-muted);font-size:0.9rem;">Pick it up and enjoy the taste of home!</p>
+                    <p>Pick it up and enjoy the taste of home!</p>
                 </div>
             </div>
         </section>
 
-        <!-- Why Choose Us -->
         <section class="section">
             <div class="section-header">
                 <h2 class="section-title">Why Choose Us</h2>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🌿</div>
+                    <div class="feature-icon-wrapper">🌿</div>
                     <h3>100% Pure Veg</h3>
+                    <p>Strictly vegetarian kitchen with fresh, locally sourced ingredients for every meal.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🧼</div>
-                    <h3>Hygienic</h3>
+                    <div class="feature-icon-wrapper">🧼</div>
+                    <h3>Ultra Hygienic</h3>
+                    <p>Cleanliness is our top priority. We maintain hospital-grade kitchen sanitation levels.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">❤️</div>
+                    <div class="feature-icon-wrapper">❤️</div>
                     <h3>Made with Love</h3>
+                    <p>Every tiffin is prepared by a mother’s hand, ensuring that authentic home taste.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🏠</div>
+                    <div class="feature-icon-wrapper">🏠</div>
                     <h3>Just Like Home</h3>
+                    <p>Forget the "mess" food. Experience the warmth and comfort of a home-cooked meal.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Reviews -->
         <section class="section" style="background: white;">
             <div class="section-header">
                 <h2 class="section-title">What Our Family Says</h2>
@@ -532,71 +734,44 @@
                     <div class="reviewer">— Shreya M.</div>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 3rem;">
-                <button class="btn btn-outline" onclick="showFeedbackModal()">📝 Write a Review / Feedback</button>
+            <div style="text-align: center; margin-top: 3rem; position: relative; z-index: 100;">
+                <button class="btn btn-outline" style="cursor: pointer;" onclick="showFeedbackModal()">📝 Write a Review / Feedback</button>
             </div>
         </section>
 
-        <!-- Contact -->
         <section id="contact" class="section">
             <div class="section-header">
                 <h2 class="section-title">Get in Touch</h2>
                 <p>We'd love to serve you!</p>
             </div>
-            <div class="contact-area">
-                <div class="contact-info">
-                    <div class="contact-row">
-                        <div class="contact-icon">📞</div>
-                        <a href="tel:9325733447">9325733447</a> | 
-                        <a href="tel:8999007643">8999007643</a>
-                    </div>
-                    <div class="contact-row">
-                        <div class="contact-icon">📸</div>
-                        <a href="https://instagram.com/pnp_kitchenn" target="_blank">@pnp_kitchenn</a> | 
-                        <a href="https://instagram.com/poojathole15" target="_blank">@poojathole15</a> | 
-                        <a href="https://instagram.com/samyakthole20" target="_blank">@samyakthole20</a>
-                    </div>
-                    <div class="contact-row">
-                        <div class="contact-icon">📍</div>
-                        <span style="font-weight: 500;">Vardhaman Residency, Khinvasara Park, Ulkanagari, Chhatrapati Sambhaji Nagar, Maharashtra</span>
-                    </div>
-                </div>
+            <div class="contact-area" id="public-contact-container">
+                <!-- Rendered by JS -->
             </div>
         </section>
 
-        <!-- Footer -->
         <footer>
             <div class="footer-soul">PNP Cloud Kitchen — a homestyle cloud kitchen lovingly run by a mother and her son ❤️</div>
             <div class="footer-sub">Food that feels like home, because it is. Made with love ❤️</div>
-            
-            <div class="footer-links">
-                <a href="https://instagram.com/pnp_kitchenn" target="_blank">@pnp_kitchenn</a>
-                <a href="https://instagram.com/poojathole15" target="_blank">@poojathole15</a>
-                <a href="https://instagram.com/samyakthole20" target="_blank">@samyakthole20</a>
-            </div>
-
             <div class="copyright">
                 © 2026 PNP Cloud Kitchen. All rights reserved.
             </div>
         </footer>
-
     </div>
 
 
     <!-- ================= OWNER PANEL SYSTEM ================= -->
     <div id="owner-panel-sys" style="display: none;">
         
-        <!-- PIN View -->
+        <!-- Login View -->
         <div id="owner-pin-view" class="owner-bg" style="display: flex; justify-content: center; align-items: center;">
-            <div class="pin-box">
+            <div class="modal" style="text-align: center;">
                 <h2 style="color: var(--primary); margin-bottom: 0.5rem;">Owner Login</h2>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Enter credentials to access panel.</p>
-                <input type="text" id="owner-user" class="pin-input" style="font-size: 1.1rem; letter-spacing: 0px; margin-bottom: 0.8rem;" placeholder="Username" onkeyup="if(event.key==='Enter') document.getElementById('owner-pass').focus()">
-                <input type="password" id="owner-pass" class="pin-input" style="font-size: 1.1rem; margin-bottom: 1rem;" placeholder="Password" onkeyup="if(event.key==='Enter') verifyLogin()">
-                <button class="btn btn-primary" style="width: 100%;" onclick="verifyLogin()">Unlock</button>
-                <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
-                    <a href="#" onclick="alert('Hint: Username is PnPCloudKitchen and Password is PnP1008')" style="color: var(--primary); font-size: 0.9rem; font-weight: 500;">Forgot Password?</a>
-                    <a href="#" onclick="exitOwnerPanel()" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">← Back to Website</a>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem;">Access management dashboard.</p>
+                <input type="text" id="owner-user" class="form-control" style="margin-bottom: 1rem; text-align: center;" placeholder="Username">
+                <input type="password" id="owner-pass" class="form-control" style="margin-bottom: 1.5rem; text-align: center;" placeholder="Password">
+                <button class="btn btn-primary" style="width: 100%;" onclick="verifyLogin()">Login</button>
+                <div style="margin-top: 1.5rem;">
+                    <button class="btn btn-outline btn-sm" onclick="exitOwnerPanel()">Back to Home</button>
                 </div>
             </div>
         </div>
@@ -605,148 +780,196 @@
         <div id="owner-dashboard-view" class="owner-bg" style="display: none;">
             <div class="panel-container">
                 <div class="panel-header">
-                    <h2>Owner Dashboard</h2>
-                    <div style="display: flex; gap: 1rem;">
-                        <button class="btn btn-outline" onclick="exitOwnerPanel()">Website</button>
-                        <button class="btn btn-danger" onclick="logoutOwner()">Lock</button>
+                    <h2>Owner Management</h2>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline btn-sm" onclick="exitOwnerPanel()">← Back to Website</button>
+                        <button class="btn btn-danger btn-sm" onclick="logoutOwner()">Lock</button>
                     </div>
                 </div>
 
-                <div class="dashboard-grid">
-                    <div class="stat-card">
-                        <div class="stat-label">Total Customers</div>
-                        <div class="stat-val" id="st-cust">0</div>
+                <div class="dash-tabs">
+                    <button class="tab-btn active" onclick="switchTab('customers', this)">Customers</button>
+                    <button class="tab-btn" onclick="switchTab('plans', this)">Tiffin Plans</button>
+                    <button class="tab-btn" onclick="switchTab('settings', this)">Business Settings</button>
+                </div>
+
+                <!-- Customers Tab -->
+                <div id="tab-customers" class="tab-content active">
+                    <div class="dashboard-grid">
+                        <div class="stat-card">
+                            <div class="stat-label">Total Customers</div>
+                            <div class="stat-val" id="st-cust">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Monthly Billing</div>
+                            <div class="stat-val" id="st-bill">₹0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Total Received</div>
+                            <div class="stat-val" style="color: var(--success);" id="st-rec">₹0</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Pending Due</div>
+                            <div class="stat-val" style="color: var(--danger);" id="st-pend">₹0</div>
+                        </div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-label">Current Month Bill</div>
-                        <div class="stat-val" id="st-bill">₹0</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-label">Total Received</div>
-                        <div class="stat-val" style="color: var(--success);" id="st-rec">₹0</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-label">Total Pending</div>
-                        <div class="stat-val" style="color: var(--danger);" id="st-pend">₹0</div>
+
+                    <div class="card">
+                        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                            <h3 style="color: var(--primary);">Customer List</h3>
+                            <button class="btn btn-primary btn-sm" onclick="showAddModal()">+ New Customer</button>
+                        </div>
+                        <div class="search-box">
+                            <input type="text" placeholder="Search by name or phone..." onkeyup="filterTable(this.value)">
+                        </div>
+                        <div style="overflow-x: auto;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Plan</th>
+                                        <th>Rate</th>
+                                        <th>Bill</th>
+                                        <th>Balance</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="customer-tbody"></tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        <h3 style="margin: 0; color: var(--primary);">Customer List</h3>
-                        <button class="btn btn-primary btn-sm" onclick="showAddModal()">+ Add Customer</button>
-                    </div>
-                    <div style="overflow-x: auto;">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Phone</th>
-                                    <th>Plan</th>
-                                    <th>Rate (₹)</th>
-                                    <th>Current Bill (₹)</th>
-                                    <th>Due Balance</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="customer-tbody">
-                                <!-- Populated by JS -->
-                            </tbody>
-                        </table>
+                <!-- Plans Tab -->
+                <div id="tab-plans" class="tab-content">
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                            <h3>Manage Plans</h3>
+                            <button class="btn btn-primary btn-sm" onclick="openPlanModal()">+ New Plan</button>
+                        </div>
+                        <div style="overflow-x: auto;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="plans-tbody"></tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Settings Tab -->
+                <div id="tab-settings" class="tab-content">
+                    <div class="card" style="max-width: 600px;">
+                        <h3 style="color: var(--primary); margin-bottom: 1.5rem;">Business Information</h3>
+                        <form onsubmit="saveSettings(event)">
+                            <div class="form-group">
+                                <label>Primary WhatsApp Number</label>
+                                <input type="text" id="set-phone1" class="form-control" placeholder="9325733447">
+                            </div>
+                            <div class="form-group">
+                                <label>Secondary Number</label>
+                                <input type="text" id="set-phone2" class="form-control" placeholder="8999007643">
+                            </div>
+                            <div class="form-group">
+                                <label>Instagram Username</label>
+                                <input type="text" id="set-insta" class="form-control" placeholder="pnp_kitchenn">
+                            </div>
+                            <div class="form-group">
+                                <label>Physical Address</label>
+                                <textarea id="set-address" class="form-control" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Save Business Details</button>
+                        </form>
+                    </div>
+                </div>
+                </div>
+
             </div>
         </div>
 
-        <!-- Customer Detail View -->
+        <!-- Detail View -->
         <div id="owner-detail-view" class="owner-bg" style="display: none;">
             <div class="panel-container">
                 <div class="panel-header">
                     <div style="display: flex; align-items: center; gap: 1rem;">
                         <button class="btn btn-outline btn-sm" onclick="backToDashboard()">← Back</button>
-                        <h2 id="det-name" style="margin: 0;">-</h2>
-                        <button class="btn btn-outline btn-sm" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;" onclick="showEditModal()">✏️ Edit</button>
+                        <h2 id="det-name">-</h2>
+                        <button class="btn btn-outline btn-sm" onclick="showEditModal()">✏️ Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="delCustomer(currId)">🗑️ Delete</button>
                     </div>
                 </div>
 
-                <div class="dashboard-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="dashboard-grid">
                     <div class="stat-card">
-                        <div class="stat-label">Plan Type</div>
+                        <div class="stat-label">Plan</div>
                         <div class="stat-val" style="font-size: 1.5rem;" id="det-plan">-</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-label">Rate / Tiffin</div>
+                        <div class="stat-label">Rate</div>
                         <div class="stat-val" style="font-size: 1.5rem;">₹<span id="det-rate">0</span></div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-label">Notes</div>
-                        <div id="det-notes" style="color: var(--text-dark); margin-top: 0.5rem; font-size: 0.9rem;">-</div>
+                        <div class="stat-label">Status</div>
+                        <div id="bs-bal" style="font-weight: 700; font-size: 1.2rem;">-</div>
                     </div>
                 </div>
 
                 <div class="card">
-                    <div class="card-header" style="flex-wrap: wrap; gap: 1rem;">
-                        <h3 style="margin: 0; color: var(--primary);">Tiffin Tracker</h3>
-                        <div class="month-picker" style="margin: 0;">
-                            <label style="font-weight: 500;">Month:</label>
-                            <input type="month" id="month-selector">
-                        </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3 style="color: var(--primary);">Tiffin Tracker</h3>
+                        <input type="month" id="month-selector" class="form-control" style="width: auto;">
                     </div>
+                    <div class="calendar-grid" id="cal-grid"></div>
+                    
+                    <hr style="margin: 2rem 0; border: 0; border-top: 1px dashed var(--border);">
 
-                    <!-- Calendar Grid -->
-                    <div class="calendar-grid" id="cal-grid">
-                        <!-- Populated by JS -->
-                    </div>
-
-                    <hr style="border: 0; border-top: 1px solid var(--border); margin: 2rem 0;">
-
-                    <h3 style="color: var(--primary); margin-bottom: 1rem;">Bill Summary</h3>
-                    <div class="bill-summary">
-                        <div class="bill-row" style="border-bottom: 1px dashed rgba(45,106,45,0.3); padding-bottom: 1.5rem;">
-                            <div class="bill-item">
-                                <label>Morning Tiffins</label>
-                                <div class="val" id="bs-m">0</div>
+                    <div class="bill-summary-dashboard">
+                        <div class="summary-stats-bar">
+                            <div class="stat-pill">
+                                <span class="stat-pill-label">Morning (M)</span>
+                                <span class="stat-pill-val" id="bs-mtot" style="color: var(--primary);">0</span>
                             </div>
-                            <div class="bill-item">
-                                <label>Night Tiffins</label>
-                                <div class="val" id="bs-n">0</div>
+                            <div class="stat-pill">
+                                <span class="stat-pill-label">Night (N)</span>
+                                <span class="stat-pill-val" id="bs-ntot" style="color: var(--accent);">0</span>
                             </div>
-                            <div class="bill-item">
-                                <label>Total Tiffins</label>
-                                <div class="val" id="bs-tot">0</div>
-                            </div>
-                            <div class="bill-item">
-                                <label>Total Bill Amount</label>
-                                <div class="val" id="bs-bill">₹0</div>
+                            <div class="stat-pill">
+                                <span class="stat-pill-label">Total (M+N)</span>
+                                <span class="stat-pill-val" id="bs-tot">0</span>
                             </div>
                         </div>
-                        <div class="bill-row">
-                            <div class="bill-item">
+
+                        <div class="billing-controls">
+                            <div class="bill-stat-large">
+                                <label>Monthly Bill</label>
+                                <div id="bs-bill">₹0</div>
+                            </div>
+                            <div class="form-group-compact">
                                 <label>Received Amount (₹)</label>
-                                <input type="number" id="bs-rec" min="0" onchange="updateReceived(this.value)">
+                                <input type="number" id="bs-rec" class="form-control-pill" onchange="updateReceived(this.value)" placeholder="0">
                             </div>
-                            <div class="bill-item">
+                            <div class="form-group-compact">
                                 <label>Payment Mode</label>
-                                <select id="bs-mode" onchange="updatePaymentMode(this.value)" style="padding: 0.6rem; border-radius: 6px; border: 1px solid var(--primary); font-size: 1rem; font-family: 'Poppins', sans-serif;">
+                                <select id="bs-mode" class="form-control-pill" onchange="updatePaymentMode(this.value)">
                                     <option value="Pending">Pending</option>
                                     <option value="Cash">Cash</option>
                                     <option value="Online">Online</option>
                                     <option value="Advance">Advance</option>
                                 </select>
                             </div>
-                            <div class="bill-item">
-                                <label>Balance Status</label>
-                                <div class="val" id="bs-bal">-</div>
-                            </div>
                         </div>
                     </div>
 
-                    <div style="display: flex; gap: 1rem; margin-top: 2rem; justify-content: flex-end;">
-                        <button class="btn btn-outline" style="background: white;" onclick="manualSaveAlert()">💾 Save Records</button>
-                        <button class="btn btn-primary" onclick="sendBillToCustomer()">📲 Send Bill to Customer</button>
+                    <div class="detail-actions">
+                        <button class="btn btn-outline" style="min-width: 120px;" onclick="manualSaveAlert()">💾 Save Data</button>
+                        <button class="btn btn-primary" style="min-width: 150px;" onclick="sendBillToCustomer()">📲 Send WhatsApp Bill</button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -755,469 +978,370 @@
     <div id="add-modal" class="modal-overlay">
         <div class="modal">
             <button class="modal-close" onclick="closeAddModal()">×</button>
-            <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;">Add New Customer</h3>
-            <form id="add-form" onsubmit="saveCustomer(event)">
-                <div class="form-group">
-                    <label>Customer Name</label>
-                    <input type="text" id="ac-name" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label>Phone Number</label>
-                    <input type="text" id="ac-phone" class="form-control">
-                </div>
+            <h3 style="color: var(--primary); margin-bottom: 1.5rem;">New Customer</h3>
+            <form onsubmit="saveCustomer(event)">
+                <div class="form-group"><label>Name</label><input type="text" id="ac-name" class="form-control" required></div>
+                <div class="form-group"><label>Phone</label><input type="text" id="ac-phone" class="form-control"></div>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                    <div class="form-group">
-                        <label>Plan Type</label>
-                        <select id="ac-plan" class="form-control" required>
-                            <option value="One-Time">One-Time</option>
-                            <option value="Two-Time">Two-Time</option>
-                            <option value="Regular">Regular</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Rate per Tiffin (₹)</label>
-                        <input type="number" id="ac-rate" class="form-control" required min="0">
-                    </div>
+                    <div class="form-group"><label>Plan</label><select id="ac-plan" class="form-control" onchange="autoFillRate('ac')"></select></div>
+                    <div class="form-group"><label>Rate (₹)</label><input type="number" id="ac-rate" class="form-control" required></div>
                 </div>
-                <div class="form-group">
-                    <label>Notes (Preferences/Address)</label>
-                    <textarea id="ac-notes" class="form-control" rows="2"></textarea>
-                </div>
-                <button type="button" class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="saveCustomer(event)">Save Customer</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Create Customer</button>
             </form>
         </div>
     </div>
 
-    <!-- Edit Modal -->
     <div id="edit-modal" class="modal-overlay">
         <div class="modal">
             <button class="modal-close" onclick="closeEditModal()">×</button>
-            <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;">Edit Customer</h3>
-            <form id="edit-form" onsubmit="updateCustomer(event)">
-                <div class="form-group">
-                    <label>Customer Name</label>
-                    <input type="text" id="ec-name" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label>Phone Number</label>
-                    <input type="text" id="ec-phone" class="form-control">
-                </div>
+            <h3 style="color: var(--primary); margin-bottom: 1.5rem;">Edit Customer</h3>
+            <form onsubmit="updateCustomer(event)">
+                <div class="form-group"><label>Name</label><input type="text" id="ec-name" class="form-control" required></div>
+                <div class="form-group"><label>Phone</label><input type="text" id="ec-phone" class="form-control"></div>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                    <div class="form-group">
-                        <label>Plan Type</label>
-                        <select id="ec-plan" class="form-control" required>
-                            <option value="One-Time">One-Time</option>
-                            <option value="Two-Time">Two-Time</option>
-                            <option value="Regular">Regular</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Rate per Tiffin (₹)</label>
-                        <input type="number" id="ec-rate" class="form-control" required min="0">
-                    </div>
+                    <div class="form-group"><label>Plan</label><select id="ec-plan" class="form-control" onchange="autoFillRate('ec')"></select></div>
+                    <div class="form-group"><label>Rate (₹)</label><input type="number" id="ec-rate" class="form-control" required></div>
                 </div>
-                <div class="form-group">
-                    <label>Notes (Preferences/Address)</label>
-                    <textarea id="ec-notes" class="form-control" rows="2"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Update Details</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Update Details</button>
             </form>
         </div>
     </div>
 
-    <!-- Feedback Modal -->
-    <div id="feedback-modal" class="modal-overlay">
+    <div id="plan-modal" class="modal-overlay">
         <div class="modal">
-            <button class="modal-close" onclick="closeFeedbackModal()">×</button>
-            <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;">Send Feedback</h3>
+            <button class="modal-close" onclick="closePlanModal()">×</button>
+            <h3 id="plan-modal-title" style="color: var(--primary); margin-bottom: 1.5rem;">Add/Edit Plan</h3>
+            <form id="plan-form" onsubmit="savePlan(event)">
+                <input type="hidden" id="p-id">
+                <div class="form-group"><label>Plan Name</label><input type="text" id="p-name" class="form-control" required></div>
+                <div class="form-group"><label>Description</label><input type="text" id="p-desc" class="form-control"></div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group"><label>Price (₹)</label><input type="number" id="p-price" class="form-control" required></div>
+                    <div class="form-group"><label>Unit</label><input type="text" id="p-unit" class="form-control" placeholder="/month"></div>
+                </div>
+                <div class="form-group"><input type="checkbox" id="p-popular"> <label style="display: inline;">Popular?</label></div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Save Plan</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="feedback-modal" class="modal-overlay">
+        <div class="modal feedback-modal-styled" style="max-width: 450px;">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h3 style="color: var(--primary); font-size: 1.8rem; margin-bottom: 0.2rem;">How was your meal?</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Your love makes our food taste better!</p>
+            </div>
+            
             <form id="feedback-form" onsubmit="submitFeedback(event)">
                 <div class="form-group">
                     <label>Your Name</label>
-                    <input type="text" id="fb-name" class="form-control" required>
+                    <input type="text" id="fb-name" class="form-control" required placeholder="Enter your name">
                 </div>
+
+                <div class="form-group" style="text-align: center;">
+                    <label>Rate Our Food</label>
+                    <div class="star-rating" id="star-container"><span class="star active" data-value="1">★</span><span class="star active" data-value="2">★</span><span class="star active" data-value="3">★</span><span class="star active" data-value="4">★</span><span class="star active" data-value="5">★</span></div>
+                    <input type="hidden" id="fb-rating" value="5">
+                    <div id="rating-text" class="rating-mood">Excellent! 😍</div>
+                </div>
+
                 <div class="form-group">
-                    <label>Rating (1-5)</label>
-                    <select id="fb-rating" class="form-control" required>
-                        <option value="5">★★★★★ (5/5)</option>
-                        <option value="4">★★★★☆ (4/5)</option>
-                        <option value="3">★★★☆☆ (3/5)</option>
-                        <option value="2">★★☆☆☆ (2/5)</option>
-                        <option value="1">★☆☆☆☆ (1/5)</option>
-                    </select>
+                    <label>Quick Tags</label>
+                    <div class="feedback-tags" id="fb-tags">
+                        <span onclick="addTag('Delicious Food')">Delicious Food 😋</span>
+                        <span onclick="addTag('Very Hygienic')">Hygienic 🧼</span>
+                        <span onclick="addTag('Great Staff')">Great Service ❤️</span>
+                        <span onclick="addTag('Home Taste')">Home Taste 🏠</span>
+                    </div>
                 </div>
+
                 <div class="form-group">
-                    <label>Your Feedback</label>
-                    <textarea id="fb-text" class="form-control" rows="4" required placeholder="Tell us what you liked or how we can improve..."></textarea>
+                    <label>Message</label>
+                    <textarea id="fb-text" class="form-control" rows="3" placeholder="Tell us more about your experience..."></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Send via WhatsApp</button>
+
+                <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                    <button type="button" class="btn btn-outline" style="flex: 1; border-radius: 12px;" onclick="closeFeedbackModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary" style="flex: 2; height: 55px; border-radius: 12px; font-size: 1.1rem;">Send via WhatsApp</button>
+                </div>
             </form>
         </div>
     </div>
 
-    <!-- ================= JAVASCRIPT ================= -->
+    <style>
+        .feedback-modal-styled { text-align: left; padding-top: 2rem; }
+        .star-rating { display: flex; justify-content: center; gap: 8px; font-size: 2.5rem; color: #ddd; cursor: pointer; margin: 0.3rem 0; }
+        .star { transition: transform 0.2s, color 0.2s; line-height: 1; }
+        .star.active { color: #FFD700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
+        .star:hover { transform: scale(1.15); }
+        .rating-mood { font-size: 1rem; font-weight: 700; color: var(--primary); margin-top: 2px; min-height: 1.2rem; }
+        .feedback-tags { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 0.5rem; margin-top: 0.5rem; }
+        .feedback-tags span { background: #f8f9fa; padding: 0.5rem 0.8rem; border-radius: 50px; font-size: 0.85rem; cursor: pointer; transition: 0.3s; border: 1px solid #eee; display: flex; align-items: center; gap: 5px; }
+        .feedback-tags span:hover { background: var(--primary-light); border-color: var(--primary); transform: translateY(-2px); }
+        .form-group label { font-weight: 600; font-size: 0.9rem; color: var(--text-dark); margin-bottom: 0.5rem; display: block; }
+    </style>
+
     <script>
-        // Init Storage
-        let appData = JSON.parse(localStorage.getItem('pnp_data'));
-        if (Array.isArray(appData)) {
-            appData = { customers: appData, records: {} };
-        } else if (!appData) {
-            appData = { customers: [], records: {} };
-        }
-        if (!appData.customers) appData.customers = [];
-        if (!appData.records) appData.records = {};
+        const defaultPlans = [
+            { id: 'p1', img: 'one_time_tiffin_plan_1775817234134.png', name: 'One-Time Tiffin', desc: 'Lunch OR Dinner — Fresh & Hot', price: 2700, unit: '/month', popular: false },
+            { id: 'p2', img: 'two_time_tiffin_plan_1775817265055.png', name: 'Two-Time Tiffin', desc: 'Lunch AND Dinner — Full Meal', price: 5400, unit: '/month', popular: true },
+            { id: 'p3', img: 'regular_tiffin_plan_1775817294391.png', name: 'Regular Tiffin', desc: 'Nutritious Base Meal', price: 100, unit: '/meal', popular: false }
+        ];
+        const defaultSettings = { 
+            phone1: '9325733447', phone2: '8999007643', insta: 'pnp_kitchenn', 
+            address: 'Vardhaman Residency, Ulkanagari, Chhatrapati Sambhaji Nagar, Maharashtra' 
+        };
+        let appData = { customers: [], records: {}, plans: [], settings: {} };
 
-        function save() { localStorage.setItem('pnp_data', JSON.stringify(appData)); }
-        function genId() { return Date.now().toString(36) + Math.random().toString(36).substr(2); }
-
-        // DOM Utils
         const el = id => document.getElementById(id);
         const hide = id => el(id).style.display = 'none';
         const show = id => el(id).style.display = 'block';
         const flex = id => el(id).style.display = 'flex';
-
-        // Panel Navigation
-        function openOwnerPanel() {
-            hide('public-website');
-            show('owner-panel-sys');
-            if (sessionStorage.getItem('pnp_auth') === '1') {
-                showDashboard();
-            } else {
-                hide('owner-dashboard-view');
-                hide('owner-detail-view');
-                flex('owner-pin-view');
-                setTimeout(()=>el('owner-user').focus(), 100);
-            }
-        }
+        function genId() { return Date.now().toString(36) + Math.random().toString(36).substr(2); }
         
-        function exitOwnerPanel() {
-            hide('owner-panel-sys');
-            show('public-website');
+        function resetStars() {
+            if(!el('fb-rating')) return;
+            el('fb-rating').value = '5';
+            document.querySelectorAll('.star').forEach(s => s.classList.add('active'));
+            if(el('rating-text')) el('rating-text').innerText = 'Excellent! 🤩';
+        }
+        function showFeedbackModal(){ 
+            console.log("Opening Feedback Modal...");
+            resetStars();
+            flex('feedback-modal'); 
+        }
+        function closeFeedbackModal(){ hide('feedback-modal'); }
+        function addTag(tag){ let txt=el('fb-text'); txt.value = txt.value ? txt.value + ', ' + tag : tag; }
+        
+        function handleStarClicks() {
+            const stars = document.querySelectorAll('.star');
+            const moods = ['','Disappointing 😞','Average 😐','Good 😋','Delicious! 😍','Excellent! 🤩'];
+            stars.forEach(star => {
+                star.onclick = () => {
+                    const val = star.getAttribute('data-value');
+                    el('fb-rating').value = val;
+                    el('rating-text').innerText = moods[val];
+                    stars.forEach(s => s.classList.toggle('active', s.getAttribute('data-value') <= val));
+                };
+            });
         }
 
-        function verifyLogin() {
-            let u = document.getElementById('owner-user').value.trim();
-            let p = document.getElementById('owner-pass').value;
-            if (u === 'PnPCloudKitchen' && p === 'PnP1008') {
-                sessionStorage.setItem('pnp_auth', '1');
-                document.getElementById('owner-user').value = '';
-                document.getElementById('owner-pass').value = '';
-                hide('owner-pin-view');
-                showDashboard();
-            } else {
-                alert('Incorrect Username or Password!');
-                document.getElementById('owner-pass').value = '';
-                document.getElementById('owner-pass').focus();
+        // --- SQLITE API SYNC ---
+
+        async function initData() {
+            try {
+                const res = await fetch('/api/data');
+                appData = await res.json();
+                console.log("Database Loaded:", appData);
+                populatePlanDropdowns();
+                renderPublicSite();
+            } catch (err) {
+                console.error("Database Load Error:", err);
             }
         }
 
-        function logoutOwner() {
-            sessionStorage.removeItem('pnp_auth');
-            hide('owner-dashboard-view');
-            hide('owner-detail-view');
-            flex('owner-pin-view');
-        }
-
-        // --- Dashboard ---
-        function showDashboard() {
-            hide('owner-pin-view');
-            hide('owner-detail-view');
-            show('owner-dashboard-view');
-            calcDashboardStats();
-            renderCustomerTable();
-        }
-
-        function calcDashboardStats() {
-            let now = new Date();
-            let curM = `${now.getFullYear()}-${(now.getMonth()+1).toString().padStart(2, '0')}`;
-            
-            let tCust = appData.customers.length;
-            let mBill = 0, tRec = 0;
-
-            appData.customers.forEach(c => {
-                let r = appData.records[c.id]?.[curM];
-                if(r) {
-                    let c_tot = 0;
-                    if(r.dates) {
-                        Object.values(r.dates).forEach(d => { c_tot += (parseInt(d.m)||0) + (parseInt(d.n)||0); });
-                    }
-                    mBill += c_tot * (parseFloat(c.rate)||0);
-                    tRec += parseFloat(r.received)||0;
-                }
+        function populatePlanDropdowns() {
+            const selects = [el('ac-plan'), el('ec-plan')];
+            selects.forEach(s => {
+                if(!s) return;
+                s.innerHTML = '<option value="">-- Select Plan --</option>';
+                appData.plans.forEach(p => {
+                    const opt = document.createElement('option');
+                    opt.value = p.name;
+                    opt.innerText = `${p.name} (₹${p.price})`;
+                    s.appendChild(opt);
+                });
             });
-
-            el('st-cust').textContent = tCust;
-            el('st-bill').textContent = '₹' + mBill;
-            el('st-rec').textContent = '₹' + tRec;
-            el('st-pend').textContent = '₹' + Math.max(0, mBill - tRec);
         }
 
-        function renderCustomerTable() {
-            let tbody = el('customer-tbody');
-            tbody.innerHTML = '';
+        function autoFillRate(prefix) {
+            const planName = el(prefix + '-plan').value;
+            const plan = appData.plans.find(p => p.name === planName);
+            if(plan) {
+                el(prefix + '-rate').value = plan.price;
+            }
+        }
+
+        async function save() {
+            try {
+                await fetch('/api/save', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(appData)
+                });
+                console.log("Database Saved");
+            } catch (err) {
+                console.error("Database Save Error:", err);
+                alert("Critical: Could not save to database!");
+            }
+            renderPublicSite();
+        }
+
+        function renderPublicSite() {
+            const grid = el('public-plans-grid');
+            let plans = defaultPlans;
+            if(appData.plans && appData.plans.length > 0) {
+                plans = appData.plans;
+            }
             
-            let now = new Date();
-            let curM = `${now.getFullYear()}-${(now.getMonth()+1).toString().padStart(2, '0')}`;
+            if(grid) {
+                grid.innerHTML = '';
+                plans.forEach(p => {
+                    const card = document.createElement('div');
+                    card.className = `plan-card ${p.popular ? 'popular' : ''}`;
+                    const imgPath = p.img || 'one_time_tiffin_plan_1775817234134.png';
+                    
+                    card.innerHTML = `
+                        ${p.popular ? '<div class="popular-tag">Most Popular</div>' : ''}
+                        <div class="plan-img-container"><img src="${imgPath}" alt="${p.name}"></div>
+                        <div style="padding: 1.5rem;">
+                            <div class="plan-name">${p.name}</div>
+                            <div class="plan-desc">${p.desc||''}</div>
+                            <div class="plan-price">₹${p.price}<span style="font-size:1rem;font-weight:400;color:var(--text-muted)">${p.unit||''}</span></div>
+                            <a href="https://wa.me/91${(appData.settings?.phone1)||'9325733447'}?text=Interested in ${p.name}" target="_blank" class="btn ${p.popular?'btn-primary':'btn-outline'}" style="width:100%">Order Now</a>
+                        </div>`;
+                    grid.appendChild(card);
+                });
+            }
+            const contact = el('public-contact-container');
+            if(contact) {
+                const s = appData.settings || defaultSettings;
+                contact.innerHTML = `
+                    <div class="contact-card-v2">
+                        <div class="contact-story">
+                            <h3>At PNP Cloud Kitchen...</h3>
+                            <p>Every meal is more than just food — it’s a taste of home, lovingly prepared by a mother and her son ❤️</p>
+                            <p>We’re here to serve you fresh, hygienic, and comforting meals every day.</p>
+                        </div>
+                        <div class="contact-grid-modern">
+                            <div class="contact-item">
+                                <div class="item-icon">📍</div>
+                                <div class="item-text">
+                                    <strong>Address</strong><br>
+                                    ${s.address}
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="item-icon">📞</div>
+                                <div class="item-text">
+                                    <strong>Call / WhatsApp</strong><br>
+                                    <a href="tel:${s.phone1}">${s.phone1}</a> | <a href="tel:${s.phone2}">${s.phone2}</a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="item-icon">📸</div>
+                                <div class="item-text">
+                                    <strong>Follow Our Journey</strong><br>
+                                    <div style="display: flex; flex-direction: column; gap: 2px; margin-top: 5px;">
+                                        <a href="https://instagram.com/pnp_kitchenn" target="_blank" style="color:var(--primary); font-weight:600;">@pnp_kitchenn</a>
+                                        <a href="https://instagram.com/poojathole15" target="_blank" style="font-size:0.9rem;">@poojathole15</a>
+                                        <a href="https://instagram.com/samyakthole20" target="_blank" style="font-size:0.9rem;">@samyakthole20</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-footer">
+                            <p>💛 <em>Homestyle food. Honest flavors. Made with love.</em></p>
+                            <p style="margin-top:0.5rem; font-weight:600; color:var(--primary)">Reach out today — your perfect homemade meal is waiting.</p>
+                        </div>
+                    </div>`;
+            }
+        }
 
-            appData.customers.forEach(c => {
-                let c_tot = 0, rec = 0;
-                let r = appData.records[c.id]?.[curM];
-                if(r) {
-                    if(r.dates) {
-                        Object.values(r.dates).forEach(d => { c_tot += (parseInt(d.m)||0) + (parseInt(d.n)||0); });
-                    }
-                    rec = parseFloat(r.received)||0;
+        function openOwnerPanel() { hide('public-website'); show('owner-panel-sys'); if(sessionStorage.getItem('pnp_auth')==='1') showDashboard(); else showLoginForm(); }
+        function showLoginForm() { flex('owner-pin-view'); hide('owner-dashboard-view'); }
+        function exitOwnerPanel() { hide('owner-panel-sys'); show('public-website'); }
+        function logoutOwner() { sessionStorage.removeItem('pnp_auth'); showLoginForm(); }
+        function verifyLogin() { if(el('owner-user').value==='PnPCloudKitchen' && el('owner-pass').value==='PnP1008') { sessionStorage.setItem('pnp_auth','1'); showDashboard(); } else alert('Invalid!'); }
+
+        function showDashboard() { hide('owner-pin-view'); hide('owner-detail-view'); show('owner-dashboard-view'); calcStats(); renderCustomerTable(appData.customers); }
+        function switchTab(tab, btn) { document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active')); el('tab-'+tab).classList.add('active'); if(tab==='plans') renderOwnerPlans(); if(tab==='settings') loadSettings(); }
+
+        function calcStats() {
+            let mBill=0, tRec=0; let now=new Date(); let curM=`${now.getFullYear()}-${(now.getMonth()+1).toString().padStart(2,'0')}`;
+            appData.customers.forEach(c=>{ let r=appData.records[c.id]?.[curM]; if(r&&r.dates) { let ctot=0; Object.values(r.dates).forEach(d=>ctot+=((parseInt(d.m)||0)+(parseInt(d.n)||0))); mBill+=ctot*parseFloat(c.rate); tRec+=parseFloat(r.received)||0; }});
+            el('st-cust').textContent=appData.customers.length; el('st-bill').textContent='₹'+mBill; el('st-rec').textContent='₹'+tRec; el('st-pend').textContent='₹'+Math.max(0,mBill-tRec);
+        }
+
+        function filterTable(q) { q=q.toLowerCase(); renderCustomerTable(appData.customers.filter(c=>c.name.toLowerCase().includes(q)||c.phone.includes(q))); }
+        function renderCustomerTable(list) {
+            const tbody=el('customer-tbody'); tbody.innerHTML=''; let now=new Date(); let curM=`${now.getFullYear()}-${(now.getMonth()+1).toString().padStart(2,'0')}`;
+            list.forEach(c=>{
+                let r=appData.records[c.id]?.[curM]; let ctot=0, rec=0; if(r){ if(r.dates) Object.values(r.dates).forEach(d=>ctot+=((parseInt(d.m)||0)+(parseInt(d.n)||0))); rec=parseFloat(r.received)||0; }
+                let bill=ctot*parseFloat(c.rate); let bal=bill-rec;
+                let balHtml = '';
+                if (bal > 0) {
+                    balHtml = `<span style="color:#d32f2f; font-weight:700; background:#ffebee; padding:4px 8px; border-radius:6px; font-size:0.85rem">🔴 Due: ₹${bal}</span>`;
+                } else if (bal < 0) {
+                    balHtml = `<span style="color:#2e7d32; font-weight:700; background:#e8f5e9; padding:4px 8px; border-radius:6px; font-size:0.85rem">🟢 Adv: ₹${Math.abs(bal)}</span>`;
+                } else {
+                    balHtml = `<span style="color:#666; font-weight:500">₹0</span>`;
                 }
-                
-                let bill = c_tot * (parseFloat(c.rate)||0);
-                let bal = bill - rec;
-                let balHtml = bal > 0 ? `<span style="color: var(--danger); font-weight: 600;">₹${bal}</span>` : `<span style="color: var(--success); font-weight: 600;">₹0</span>`;
-                if(bal < 0) balHtml = `<span style="color: var(--success); font-weight: 600;">Adv: ₹${Math.abs(bal)}</span>`;
-
-                let tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td style="font-weight: 500; color: var(--primary);">${c.name}</td>
-                    <td>${c.phone || '-'}</td>
-                    <td>${c.plan}</td>
-                    <td>₹${c.rate}</td>
-                    <td style="font-weight: 500;">₹${bill}</td>
-                    <td>${balHtml}</td>
-                    <td>
-                        <button class="btn btn-outline btn-sm" onclick="openDetail('${c.id}')">Manage</button>
-                        <button class="btn btn-danger btn-sm" onclick="delCustomer('${c.id}')">Del</button>
-                    </td>
-                `;
+                const tr=document.createElement('tr'); tr.innerHTML=`<td style="font-weight:600">${c.name}</td><td>${c.plan||'-'}</td><td>₹${c.rate}</td><td>₹${bill}</td><td>${balHtml}</td><td><button class="btn btn-outline btn-sm" onclick="openDetail('${c.id}')">Manage</button></td>`;
                 tbody.appendChild(tr);
             });
         }
 
-        // --- Modals ---
-        function showAddModal() { flex('add-modal'); }
-        function closeAddModal() { hide('add-modal'); el('add-form').reset(); }
-        
-        function saveCustomer(e) {
-            if(e) e.preventDefault();
-            let nameVal = el('ac-name').value.trim();
-            if(!nameVal) { alert('Please enter a customer name.'); return; }
-            let rateVal = el('ac-rate').value;
-            if(!rateVal) { alert('Please enter a rate per tiffin.'); return; }
-            appData.customers.push({
-                id: genId(),
-                name: nameVal,
-                phone: el('ac-phone').value,
-                plan: el('ac-plan').value,
-                rate: el('ac-rate').value,
-                notes: el('ac-notes').value
+        function renderOwnerPlans() {
+            const tbody=el('plans-tbody'); tbody.innerHTML='';
+            appData.plans.forEach(p=>{
+                const tr=document.createElement('tr');
+                tr.innerHTML=`<td><div style="font-weight:600">${p.name}</div><div style="font-size:0.8rem;color:var(--text-muted)">${p.desc||''}</div></td><td>₹${p.price}${p.unit||''}</td><td><button class="btn btn-outline btn-sm" onclick="editPlan('${p.id}')">Edit</button></td>`;
+                tbody.appendChild(tr);
             });
-            save();
-            closeAddModal();
-            calcDashboardStats();
-            renderCustomerTable();
         }
+        function showAddPlanModal(){ el('plan-form').reset(); el('p-id').value=''; el('plan-modal-title').innerText='New Plan'; flex('plan-modal'); }
+        function editPlan(id){ let p=appData.plans.find(x=>x.id===id); el('p-id').value=p.id; el('p-name').value=p.name; el('p-desc').value=p.desc; el('p-price').value=p.price; el('p-unit').value=p.unit; el('p-popular').checked=p.popular; el('plan-modal-title').innerText='Edit Plan'; flex('plan-modal'); }
+        function savePlan(e){ e.preventDefault(); let id=el('p-id').value; let np={id:id||genId(), img:'one_time_tiffin_plan_1775817234134.png', name:el('p-name').value, desc:el('p-desc').value, price:parseFloat(el('p-price').value), unit:el('p-unit').value, popular:el('p-popular').checked }; if(id){ let idx=appData.plans.findIndex(x=>x.id===id); appData.plans[idx]=np; } else appData.plans.push(np); save(); hide('plan-modal'); renderOwnerPlans(); populatePlanDropdowns(); }
+        function deletePlan(id){ if(confirm('Del?')){ appData.plans=appData.plans.filter(x=>x.id!==id); save(); renderOwnerPlans(); }}
+        function closePlanModal(){ hide('plan-modal'); }
 
-        function showEditModal() {
-            let c = appData.customers.find(x => x.id === currId);
-            if(!c) return;
-            el('ec-name').value = c.name;
-            el('ec-phone').value = c.phone || '';
-            el('ec-plan').value = c.plan;
-            el('ec-rate').value = c.rate;
-            el('ec-notes').value = c.notes || '';
-            flex('edit-modal');
-        }
+        function loadSettings(){ el('set-phone1').value=appData.settings.phone1; el('set-phone2').value=appData.settings.phone2; el('set-insta').value=appData.settings.insta; el('set-address').value=appData.settings.address; }
+        function saveSettings(e){ e.preventDefault(); appData.settings={phone1:el('set-phone1').value, phone2:el('set-phone2').value, insta:el('set-insta').value, address:el('set-address').value }; save(); alert('Saved to SQLite!'); }
 
-        function closeEditModal() { hide('edit-modal'); }
-
-        function updateCustomer(e) {
-            if(e) e.preventDefault();
-            let cIndex = appData.customers.findIndex(x => x.id === currId);
-            if(cIndex === -1) return;
-            
-            appData.customers[cIndex].name = el('ec-name').value.trim();
-            appData.customers[cIndex].phone = el('ec-phone').value;
-            appData.customers[cIndex].plan = el('ec-plan').value;
-            appData.customers[cIndex].rate = el('ec-rate').value;
-            appData.customers[cIndex].notes = el('ec-notes').value;
-            
-            save();
-            closeEditModal();
-            openDetail(currId);
-        }
-
-        function delCustomer(id) {
-            if(confirm('Are you sure you want to delete this customer? All their records will be lost.')) {
-                appData.customers = appData.customers.filter(x => x.id !== id);
-                delete appData.records[id];
-                save();
-                calcDashboardStats();
-                renderCustomerTable();
+        let currId=null; let currMon=null;
+        function openDetail(id){ currId=id; hide('owner-dashboard-view'); show('owner-detail-view'); let c=appData.customers.find(x=>x.id===id); el('det-name').innerText=c.name; el('det-plan').innerText=c.plan; el('det-rate').innerText=c.rate; let now=new Date(); currMon=`${now.getFullYear()}-${(now.getMonth()+1).toString().padStart(2,'0')}`; el('month-selector').value=currMon; renderCal(); }
+        function backToDashboard() { currId=null; showDashboard(); }
+        function renderCal() { 
+            let [y,m]=currMon.split('-'); let days=new Date(y,m,0).getDate(); let grid=el('cal-grid'); grid.innerHTML='';
+            for(let i=1;i<=days;i++){
+                let dStr=`${currMon}-${i.toString().padStart(2,'0')}`; let dDat=(appData.records[currId]?.[currMon]?.dates?.[dStr])||{m:0,n:0}; 
+                let dObj=new Date(y,m-1,i); let w=dObj.toLocaleDateString('en-US',{weekday:'short'});
+                const div=document.createElement('div'); div.className='date-card'; div.innerHTML=`<div class="date-header">${i} ${w}</div><div class="date-inputs"><div><label>M</label><input type="number" value="${dDat.m}" onchange="updateDay('${dStr}','m',this.value)"></div><div><label>N</label><input type="number" value="${dDat.n}" onchange="updateDay('${dStr}','n',this.value)"></div></div>`;
+                grid.appendChild(div);
             }
+            calcBill();
         }
-
-        // --- Feedback Modal ---
-        function showFeedbackModal() { flex('feedback-modal'); }
-        function closeFeedbackModal() { hide('feedback-modal'); el('feedback-form').reset(); }
-        function submitFeedback(e) {
-            e.preventDefault();
-            const name = el('fb-name').value;
-            const rating = el('fb-rating').value;
-            const text = el('fb-text').value;
-            
-            const msg = `*New Customer Feedback* 🌟\n\n*Name:* ${name}\n*Rating:* ${rating}/5\n*Feedback:* ${text}`;
-            const encodedMsg = encodeURIComponent(msg);
-            window.open(`https://api.whatsapp.com/send?phone=919325733447&text=${encodedMsg}`, '_blank');
-            closeFeedbackModal();
+        function updateDay(d,s,v){ if(!appData.records[currId])appData.records[currId]={}; if(!appData.records[currId][currMon])appData.records[currId][currMon]={dates:{},received:0}; if(!appData.records[currId][currMon].dates[d])appData.records[currId][currMon].dates[d]={m:0,n:0}; appData.records[currId][currMon].dates[d][s]=parseInt(v)||0; save(); calcBill(); }
+        function calcBill(){
+            let mt=0, nt=0; let r=appData.records[currId]?.[currMon]; if(r&&r.dates) Object.values(r.dates).forEach(d=>{mt+=parseInt(d.m)||0; nt+=parseInt(d.n)||0;});
+            let c=appData.customers.find(x=>x.id===currId); let bill=(mt+nt)*parseFloat(c.rate); let rec=r?parseFloat(r.received)||0:0;
+            el('bs-mtot').innerText=mt; el('bs-ntot').innerText=nt; el('bs-tot').innerText=(mt+nt); 
+            el('bs-bill').innerText='₹'+bill; el('bs-rec').value=rec; el('bs-mode').value=r?.mode||'Pending';
+            let bal=bill-rec; el('bs-bal').innerHTML=bal>0?`<span style="color:var(--danger)">🔴 Due: ₹${bal}</span>`:`<span style="color:var(--success)">🟢 Adv: ₹${Math.abs(bal)}</span>`;
         }
+        function updateReceived(v){ if(!appData.records[currId])appData.records[currId]={}; if(!appData.records[currId][currMon])appData.records[currId][currMon]={dates:{},received:0}; appData.records[currId][currMon].received=parseFloat(v)||0; save(); calcBill(); }
+        function updatePaymentMode(v){ if(!appData.records[currId][currMon])appData.records[currId][currMon]={dates:{},received:0}; appData.records[currId][currMon].mode=v; save(); }
 
-        // --- Customer Detail & Calendar ---
-        let currId = null;
-        let currMon = null;
-
-        function backToDashboard() {
-            currId = null;
-            showDashboard();
-        }
-
-        function openDetail(id) {
-            currId = id;
-            hide('owner-dashboard-view');
-            show('owner-detail-view');
-            
-            let c = appData.customers.find(x => x.id === id);
-            el('det-name').textContent = c.name;
-            el('det-plan').textContent = c.plan;
-            el('det-rate').textContent = c.rate;
-            el('det-notes').textContent = c.notes || 'No notes provided.';
-
-            let now = new Date();
-            currMon = `${now.getFullYear()}-${(now.getMonth()+1).toString().padStart(2, '0')}`;
-            
-            let mSel = el('month-selector');
-            mSel.value = currMon;
-            mSel.onchange = (e) => { currMon = e.target.value; renderCal(); };
-            
-            renderCal();
-        }
-
-        function ensureRecStructure(dateStr) {
-            if(!appData.records[currId]) appData.records[currId] = {};
-            if(!appData.records[currId][currMon]) appData.records[currId][currMon] = { dates: {}, received: 0 };
-            if(!appData.records[currId][currMon].dates[dateStr]) {
-                appData.records[currId][currMon].dates[dateStr] = { m: 0, n: 0 };
-            }
-        }
-
-        function renderCal() {
-            if(!currMon) return;
-            let [y, m] = currMon.split('-');
-            let maxDays = new Date(parseInt(y), parseInt(m), 0).getDate();
-            
-            let grid = el('cal-grid');
-            grid.innerHTML = '';
-            
-            // Render all days
-            for(let i=1; i<=maxDays; i++) {
-                let dStr = `${currMon}-${i.toString().padStart(2, '0')}`;
-                // Get data safely
-                let dDat = appData.records[currId]?.[currMon]?.dates[dStr] || { m:0, n:0 };
-                
-                // Day name
-                let dObj = new Date(parseInt(y), parseInt(m)-1, i);
-                let wDay = dObj.toLocaleDateString('en-US', {weekday: 'short'});
-
-                let card = document.createElement('div');
-                card.className = 'date-card';
-                card.innerHTML = `
-                    <div class="date-header">${i} ${wDay}</div>
-                    <div class="date-inputs">
-                        <div>
-                            <label>Morning</label>
-                            <input type="number" min="0" value="${dDat.m}" onchange="updateDay('${dStr}', 'm', this.value)">
-                        </div>
-                        <div>
-                            <label>Night</label>
-                            <input type="number" min="0" value="${dDat.n}" onchange="updateDay('${dStr}', 'n', this.value)">
-                        </div>
-                    </div>
-                `;
-                grid.appendChild(card);
-            }
-            calcUserBill();
-        }
-
-        function updateDay(dStr, slot, val) {
-            ensureRecStructure(dStr);
-            appData.records[currId][currMon].dates[dStr][slot] = parseInt(val) || 0;
-            save();
-            calcUserBill();
-        }
-
-        function updateReceived(val) {
-            if(!appData.records[currId]) appData.records[currId] = {};
-            if(!appData.records[currId][currMon]) appData.records[currId][currMon] = { dates: {}, received: 0 };
-            appData.records[currId][currMon].received = parseFloat(val) || 0;
-            save();
-            calcUserBill();
-        }
-
-        function updatePaymentMode(val) {
-            if(!appData.records[currId]) appData.records[currId] = {};
-            if(!appData.records[currId][currMon]) appData.records[currId][currMon] = { dates: {}, received: 0, mode: 'Pending' };
-            appData.records[currId][currMon].mode = val;
-            save();
-        }
-
-        function calcUserBill() {
-            let m_tot = 0, n_tot = 0;
-            let rm = appData.records[currId]?.[currMon];
-            
-            if(rm && rm.dates) {
-                Object.values(rm.dates).forEach(d => {
-                    m_tot += parseInt(d.m)||0;
-                    n_tot += parseInt(d.n)||0;
-                });
-            }
-            
-            let tot = m_tot + n_tot;
-            let c = appData.customers.find(x => x.id === currId);
-            let rate = parseFloat(c.rate) || 0;
-            let bill = tot * rate;
-            let rec = rm ? (parseFloat(rm.received)||0) : 0;
-            
-            el('bs-m').textContent = m_tot;
-            el('bs-n').textContent = n_tot;
-            el('bs-tot').textContent = tot;
-            el('bs-bill').textContent = '₹' + bill;
-            el('bs-rec').value = rec;
-            el('bs-mode').value = rm?.mode || 'Pending';
-            
-            let bal = rec - bill;
-            let bEl = el('bs-bal');
-            if(bal >= 0) {
-                bEl.innerHTML = `<span style="color: var(--success); font-weight:700;">🟢 Advance: ₹${bal}</span>`;
-            } else {
-                bEl.innerHTML = `<span style="color: var(--danger); font-weight:700;">🔴 Due: ₹${Math.abs(bal)}</span>`;
-            }
-        }
-
-        // --- Bill Sharing ---
-        function manualSaveAlert() {
-            save(); // Already auto-saves but provides UI feedback
-            alert('Records saved successfully!');
-        }
+        function showAddModal(){ flex('add-modal'); }
+        function closeAddModal(){ hide('add-modal'); }
+        function saveCustomer(e){ e.preventDefault(); appData.customers.push({id:genId(), name:el('ac-name').value, phone:el('ac-phone').value||'', plan:el('ac-plan').value||'', rate:el('ac-rate').value }); save(); closeAddModal(); showDashboard(); }
+        function showEditModal(){ flex('edit-modal'); let c=appData.customers.find(x=>x.id===currId); el('ec-name').value=c.name; el('ec-phone').value=c.phone; el('ec-plan').value=c.plan; el('ec-rate').value=c.rate; }
+        function closeEditModal(){ hide('edit-modal'); }
+        function updateCustomer(e){ e.preventDefault(); let idx=appData.customers.findIndex(x=>x.id===currId); appData.customers[idx]={...appData.customers[idx], name:el('ec-name').value, phone:el('ec-phone').value, plan:el('ec-plan').value, rate:el('ec-rate').value }; save(); closeEditModal(); openDetail(currId); }
+        function delCustomer(id){ if(confirm('Delete?')){ appData.customers=appData.customers.filter(x=>x.id!==id); delete appData.records[id]; save(); showDashboard(); }}
 
         function sendBillToCustomer() {
             let c = appData.customers.find(x => x.id === currId);
             if(!c) return;
 
-            let bill = el('bs-bill').textContent.replace('₹', '');
-            
+            let bill = el('bs-bill').innerText.replace('₹', '');
             let rate = parseFloat(c.rate) || 0;
             let rm = appData.records[currId]?.[currMon];
             let datesObj = rm ? (rm.dates || {}) : {};
             
             let sortedDateKeys = Object.keys(datesObj).sort();
             let detailsText = '';
-            let lastAdded = 'N/A';
             
             sortedDateKeys.forEach(dk => {
                 let d = datesObj[dk];
@@ -1227,7 +1351,6 @@
                 if (mVal > 0 || nVal > 0) {
                     let parts = dk.split('-');
                     let formattedDate = `${parts[2]}/${parts[1]}/${parts[0].slice(2)}`;
-                    lastAdded = formattedDate;
                     
                     detailsText += `\n${formattedDate}\n`;
                     if (mVal > 0) detailsText += `Morning: ${mVal} Tiffin${mVal>1?'s':''} – ₹${mVal * rate}\n`;
@@ -1243,23 +1366,72 @@
                 recText += ` (${mode})`;
             }
 
-            let msg = `Hello ${c.name},\n\n----------------------------------\n\nTiffin Details:\n${detailsText}\n----------------------------------\n\nTotal Amount: ₹${bill}\nAmount Received: ${recText}\n\nPayment Options:\nCash / Online Payment\nPhonePe: 8999007643\n\nThank you,\nPNP Cloud Kitchen`;
+            let msg = `Hello ${c.name},\n\n*PNP Cloud Kitchen Bill* 🍱\n\n------------------------------\n*Tiffin Details:*${detailsText}\n------------------------------\n\n*Total Amount:* ₹${bill}\n*Amount Received:* ${recText}\n\n*Payment Details:*\nPhonePe: 8999007643\n\nThank you for choosing us! ❤️`;
             
             let phone = c.phone || "";
-            if(phone) {
-                if(!phone.startsWith('+91') && !phone.startsWith('91') && phone.length === 10) {
-                    phone = '91' + phone;
-                }
-            }
+            if(phone && phone.length === 10) phone = '91' + phone;
 
-            let eMsg = encodeURIComponent(msg);
-            if(phone) {
-                window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${eMsg}`, '_blank');
-            } else {
-                window.open(`https://api.whatsapp.com/send?text=${eMsg}`, '_blank');
-            }
+            window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(msg)}`, '_blank');
+        }
+        function showFeedbackModal(){ flex('feedback-modal'); }
+        function closeFeedbackModal(){ hide('feedback-modal'); el('feedback-form').reset(); resetStars(); }
+        
+        // Star Logic
+        document.querySelectorAll('.star').forEach(star => {
+            star.onclick = () => {
+                const val = parseInt(star.dataset.value);
+                el('fb-rating').value = val;
+                document.querySelectorAll('.star').forEach(s => {
+                    s.classList.toggle('active', parseInt(s.dataset.value) <= val);
+                });
+                const texts = ['Bad 😠', 'Poor 😞', 'Good 🙂', 'Great 😊', 'Excellent! 😍'];
+                el('rating-text').innerText = texts[val-1];
+            };
+        });
+
+        function resetStars() {
+            el('fb-rating').value = '5';
+            document.querySelectorAll('.star').forEach(s => s.classList.add('active'));
+            el('rating-text').innerText = 'Excellent! 😍';
         }
 
+        function addTag(tag) {
+            const textarea = el('fb-text');
+            if(textarea.value.includes(tag)) return;
+            textarea.value = (textarea.value ? textarea.value + ', ' : '') + tag;
+        }
+
+        async function submitFeedback(e) {
+            e.preventDefault();
+            const name = el('fb-name').value;
+            const rating = el('fb-rating').value;
+            const message = el('fb-text').value;
+            const mood = el('rating-text').innerText || "Excellent!";
+            
+            // Generate clean stars: ★ for active, ☆ for remaining
+            const stars = "★".repeat(rating) + "☆".repeat(5 - rating);
+            
+            const text = `*NEW CUSTOMER FEEDBACK*\n` +
+                         `━━━━━━━━━━━━━━━━━━\n\n` +
+                         `*Client:* ${name}\n` +
+                         `*Rating:* ${rating}/5\n` +
+                         `*Experience:* ${mood.split(' ')[0]}\n` +
+                         `*Message:* ${message || "Delicious Food"}\n\n` +
+                         `━━━━━━━━━━━━━━━━━━\n` +
+                         `*Pride of PNP Cloud Kitchen*`;
+
+            const waUrl = `https://wa.me/91${(appData.settings?.phone1)||'9325733447'}?text=${encodeURIComponent(text)}`;
+            window.open(waUrl, '_blank');
+            closeFeedbackModal();
+        }
+        function manualSaveAlert(){ save(); alert('Saved!'); }
+
+        // Start
+        window.onload = () => {
+            initData();
+            handleStarClicks();
+            if(el('month-selector')) el('month-selector').onchange=(e)=>{currMon=e.target.value; renderCal();};
+        };
     </script>
 </body>
 </html>
