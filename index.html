@@ -685,6 +685,7 @@
                     <div style="display: flex; align-items: center; gap: 1rem;">
                         <button class="btn btn-outline btn-sm" onclick="backToDashboard()">← Back</button>
                         <h2 id="det-name" style="margin: 0;">-</h2>
+                        <button class="btn btn-outline btn-sm" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;" onclick="showEditModal()">✏️ Edit</button>
                     </div>
                 </div>
 
@@ -802,7 +803,44 @@
                     <label>Notes (Preferences/Address)</label>
                     <textarea id="ac-notes" class="form-control" rows="2"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Save Customer</button>
+                <button type="button" class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="saveCustomer(event)">Save Customer</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="modal-overlay">
+        <div class="modal">
+            <button class="modal-close" onclick="closeEditModal()">×</button>
+            <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;">Edit Customer</h3>
+            <form id="edit-form" onsubmit="updateCustomer(event)">
+                <div class="form-group">
+                    <label>Customer Name</label>
+                    <input type="text" id="ec-name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="text" id="ec-phone" class="form-control">
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label>Plan Type</label>
+                        <select id="ec-plan" class="form-control" required>
+                            <option value="One-Time">One-Time</option>
+                            <option value="Two-Time">Two-Time</option>
+                            <option value="Regular">Regular</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Rate per Tiffin (₹)</label>
+                        <input type="number" id="ec-rate" class="form-control" required min="0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Notes (Preferences/Address)</label>
+                    <textarea id="ec-notes" class="form-control" rows="2"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Update Details</button>
             </form>
         </div>
     </div>
@@ -977,10 +1015,14 @@
         function closeAddModal() { hide('add-modal'); el('add-form').reset(); }
         
         function saveCustomer(e) {
-            e.preventDefault();
+            if(e) e.preventDefault();
+            let nameVal = el('ac-name').value.trim();
+            if(!nameVal) { alert('Please enter a customer name.'); return; }
+            let rateVal = el('ac-rate').value;
+            if(!rateVal) { alert('Please enter a rate per tiffin.'); return; }
             appData.customers.push({
                 id: genId(),
-                name: el('ac-name').value,
+                name: nameVal,
                 phone: el('ac-phone').value,
                 plan: el('ac-plan').value,
                 rate: el('ac-rate').value,
@@ -990,6 +1032,35 @@
             closeAddModal();
             calcDashboardStats();
             renderCustomerTable();
+        }
+
+        function showEditModal() {
+            let c = appData.customers.find(x => x.id === currId);
+            if(!c) return;
+            el('ec-name').value = c.name;
+            el('ec-phone').value = c.phone || '';
+            el('ec-plan').value = c.plan;
+            el('ec-rate').value = c.rate;
+            el('ec-notes').value = c.notes || '';
+            flex('edit-modal');
+        }
+
+        function closeEditModal() { hide('edit-modal'); }
+
+        function updateCustomer(e) {
+            if(e) e.preventDefault();
+            let cIndex = appData.customers.findIndex(x => x.id === currId);
+            if(cIndex === -1) return;
+            
+            appData.customers[cIndex].name = el('ec-name').value.trim();
+            appData.customers[cIndex].phone = el('ec-phone').value;
+            appData.customers[cIndex].plan = el('ec-plan').value;
+            appData.customers[cIndex].rate = el('ec-rate').value;
+            appData.customers[cIndex].notes = el('ec-notes').value;
+            
+            save();
+            closeEditModal();
+            openDetail(currId);
         }
 
         function delCustomer(id) {
